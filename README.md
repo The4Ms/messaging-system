@@ -1,7 +1,7 @@
-instant-messaging-system
+messaging-system
 ========================
 
-A simple instant messaging system
+A simple messaging system
 
 # Getting Started
 - This is a netbeans project, you will have to install [Netbeans IDE](https://netbeans.org/downloads/index.html)

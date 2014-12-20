@@ -7,8 +7,8 @@
 <!-- the Compile on Save feature is turned off for the project. -->
 <!-- You can turn off the Compile on Save (or Deploy on Save) setting -->
 <!-- in the project's Project Properties dialog box.-->
-<project name="instant-messaging-system" default="default" basedir=".">
-    <description>Builds, tests, and runs the project instant-messaging-system.</description>
+<project name="messaging-system" default="default" basedir=".">
+    <description>Builds, tests, and runs the project messaging-system.</description>
     <import file="nbproject/build-impl.xml"/>
     <!--
 
