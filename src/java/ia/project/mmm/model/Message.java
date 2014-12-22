@@ -6,10 +6,21 @@ package ia.project.mmm.model;
  */
 public class Message {
     private Long Id;
-    private UserInfo receivers;
+    private UserInfo[] receivers;
     private UserInfo sender;
     private String body;
     private String subject;
+
+    public Message() {
+    }
+
+    public Message(Long Id, UserInfo[] receivers, UserInfo sender, String subject, String body) {
+        this.Id = Id;
+        this.receivers = receivers;
+        this.sender = sender;
+        this.body = body;
+        this.subject = subject;
+    }
 
     public Long getId() {
         return Id;
@@ -19,11 +30,11 @@ public class Message {
         this.Id = Id;
     }
     
-    public UserInfo getReceivers() {
+    public UserInfo[] getReceivers() {
         return receivers;
     }
 
-    public void setReceivers(UserInfo receivers) {
+    public void setReceivers(UserInfo[] receivers) {
         this.receivers = receivers;
     }
 

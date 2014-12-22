@@ -8,6 +8,14 @@ public class UserInfo {
     private String username;
     private String fullname;
 
+    public UserInfo() {
+    }
+
+    public UserInfo(String username, String fullname) {
+        this.username = username;
+        this.fullname = fullname;
+    }
+
     public String getFullname() {
         return fullname;
     }

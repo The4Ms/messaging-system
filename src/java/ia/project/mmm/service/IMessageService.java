@@ -9,9 +9,19 @@ import ia.project.mmm.model.Message;
 public interface IMessageService {
     Message getMessageById(Long messageId);
     
-    Message[] getInboxOf(String username) throws UsernameNotFound;
-    Message[] getDraftsOf(String username) throws UsernameNotFound;
-    Message[] getTrashOf(String username) throws UsernameNotFound;
+    Message[] getInboxOf(String username);
+    Message[] getSentOf(String username);
+    Message[] getDraftsOf(String username);
+    Message[] getTrashOf(String username);
     
-    boolean sendMessage(String senderUsername, String[] receiversUsernames, String subject, String body) throws UsernameNotFound;
+    /***
+     * 
+     * @param senderUsername
+     * @param receiversUsernames
+     * @param subject
+     * @param body
+     * @return invalid usernames
+     * @throws UsernameNotFound
+     */
+    String[] sendMessage(String senderUsername, String[] receiversUsernames, String subject, String body);
 }
