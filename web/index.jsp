@@ -13,5 +13,6 @@
     </head>
     <body>
         <h1>Inbox goes here</h1>
+        <a href="logout"></a>
     </body>
 </html>
