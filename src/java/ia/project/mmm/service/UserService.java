@@ -24,10 +24,16 @@ public class UserService implements IUserService{
     public boolean isValidUser(String username, String password) {
         DatabaseHandler db = DatabaseHandlerProvider.getDatabaseHandler();
         ResultSet result = db.excuteParameterizedQueryRes(CHECK_USER_QUERY, username, password);
-        db.closeConnection();
-
-        try { return result.getInt("total") == 1; 
+        
+        boolean res = false;
+        try {
+            if(result.next()){
+                res = result.getInt(1) == 1; 
+            }
         } catch (SQLException ex) { throw new RuntimeException(ex); }
+        
+        db.closeConnection();
+        return res;
     }
 
     @Override

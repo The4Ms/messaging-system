@@ -65,7 +65,7 @@ public class DatabaseHandler {
         try{
             PreparedStatement stmt = c.prepareStatement(query);
             for(int i=0; i<parameters.length; i++){
-                stmt.setObject(i, parameters[i]);
+                stmt.setObject(i+1, parameters[i]);
             }
             return stmt;
         } catch (SQLException ex) {
