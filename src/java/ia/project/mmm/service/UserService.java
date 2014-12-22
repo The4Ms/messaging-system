@@ -17,8 +17,8 @@ import java.util.logging.Logger;
  */
 public class UserService implements IUserService{
 
-    private static final String CHECK_USER_QUERY = "SELECT count(*) FROM users WHERE username=? AND password=?";
-    private static final String CREATE_USER_QUERY = "INSERT INTO users(username, password, fullname) VALUES(?, ?, ?)";
+    private static final String CHECK_USER_QUERY = "SELECT count(*) FROM user WHERE username=? AND password=?";
+    private static final String CREATE_USER_QUERY = "INSERT INTO user(username, password, fullname) VALUES(?, ?, ?)";
     
     @Override
     public boolean isValidUser(String username, String password) {
