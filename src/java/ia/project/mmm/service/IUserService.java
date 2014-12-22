@@ -6,5 +6,5 @@ package ia.project.mmm.service;
  */
 public interface IUserService {
     boolean isValidUser(String username, String password);
-    boolean addNewUser(String username, String password, String fullname) throws UsernameAlreadyExists;
+    boolean addNewUser(String username, String password, String fullname);
 }

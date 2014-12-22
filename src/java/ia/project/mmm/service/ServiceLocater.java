@@ -5,11 +5,13 @@ package ia.project.mmm.service;
  * @author Mohamed Kamal
  */
 public class ServiceLocater {
-    IMessageService getIMessageService(){
+    private static IUserService userService = new UserService();
+    
+    public static IMessageService getIMessageService(){
         return null;
     }
     
-    IUserService getUserService(){
-        return null;
+    public static IUserService getUserService(){
+        return userService;
     }
 }

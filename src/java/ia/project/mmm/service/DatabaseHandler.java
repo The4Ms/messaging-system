@@ -36,16 +36,24 @@ public class DatabaseHandler {
         }
     }
     
-    private void excuteParameterizedQuery(String query, Object...parameters){
+    public void closeConnection(){
+        try {
+            c.close();
+        } catch (SQLException ex) {
+            throw new RuntimeException("error closing the connection", ex);
+        }
+    }
+    
+    public int excuteParameterizedQuery(String query, Object...parameters){
         PreparedStatement stmt = GetPreparedStatement(query, parameters);
         try {
-            stmt.executeUpdate();
+            return stmt.executeUpdate();
         } catch (SQLException ex) {
             throw new RuntimeException("couldn't excute the query " + query, ex);
         }
     }
     
-    private ResultSet excuteParameterizedQueryRes(String query, Object...parameters){
+    public ResultSet excuteParameterizedQueryRes(String query, Object...parameters){
         PreparedStatement stmt = GetPreparedStatement(query, parameters);
         try {
             return stmt.executeQuery();
