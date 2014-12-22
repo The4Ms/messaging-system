@@ -1,0 +1,5 @@
+CREATE USER 'msg'@'localhost' IDENTIFIED BY 'msg';
+
+GRANT ALL PRIVILEGES ON *.* TO 'msg'@'localhost' WITH GRANT OPTION;
+
+FLUSH PRIVILEGES;
