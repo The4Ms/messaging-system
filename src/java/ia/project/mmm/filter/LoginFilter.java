@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class LoginFilter implements Filter{
 
-    public String[] loginUrls = {"/login.html", "/login"};
+    public String[] loginUrls = {"/login.html", "/login", "/signup.html", "/signup"};
     
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
