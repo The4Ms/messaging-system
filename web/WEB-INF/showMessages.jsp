@@ -40,7 +40,7 @@
                             </c:forEach>
                         </td>
                         <td>
-                            <a href="viewMessage.jsp?=${komalo.id}">${komalo.subject}</a>
+                            <a href="viewMessage?id=${komalo.id}">${komalo.subject}</a>
                         </td>
                     </tr>
                 </c:forEach>

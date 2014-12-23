@@ -7,7 +7,7 @@ import ia.project.mmm.model.Message;
  * @author Mohamed Kamal
  */
 public interface IMessageService {
-    Message getMessageById(Long messageId);
+    Message getMessageById(int messageId);
     
     Message[] getInboxOf(String username);
     Message[] getSentOf(String username);

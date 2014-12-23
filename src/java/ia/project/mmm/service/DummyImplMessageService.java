@@ -15,8 +15,11 @@ import ia.project.mmm.model.UserInfo;
 public class DummyImplMessageService implements IMessageService {
 
     @Override
-    public Message getMessageById(Long messageId) {
-        return new Message();
+    public Message getMessageById(int messageId) {
+        UserInfo[] arr2 = new UserInfo[1];
+        arr2[0] = new UserInfo("komalo", "mohamed kamal");
+
+        return new Message(1, arr2, new UserInfo("mohsen", "mahmoud mohsen"), "subject in inbox", "sadsdadsads adsdsa\nads ads sd ads ads \ndsa adssaddassadsadsad\n");
     }
 
     @Override
@@ -26,8 +29,8 @@ public class DummyImplMessageService implements IMessageService {
         UserInfo[] arr2 = new UserInfo[1];
         arr2[0] = new UserInfo("komalo", "mohamed kamal");
 
-        arr[0] = new Message(1L, arr2, new UserInfo("mohsen", "mahmoud mohsen"), "subject in inbox", "body");
-        arr[1] = new Message(1L, arr2, new UserInfo("mohsen", "mahmoud mohsen"), "subject in inbox", "body");
+        arr[0] = new Message(1, arr2, new UserInfo("mohsen", "mahmoud mohsen"), "subject in inbox", "body");
+        arr[1] = new Message(1, arr2, new UserInfo("mohsen", "mahmoud mohsen"), "subject in inbox", "body");
         return arr;
     }
 
@@ -38,8 +41,8 @@ public class DummyImplMessageService implements IMessageService {
         UserInfo[] arr2 = new UserInfo[1];
         arr2[0] = new UserInfo("komalo", "mohamed kamal");
 
-        arr[0] = new Message(1L, arr2, new UserInfo("mohsen", "mahmoud mohsen"), "subject in sent", "body");
-        arr[1] = new Message(1L, arr2, new UserInfo("mohsen", "mahmoud mohsen"), "subject in sent", "body");
+        arr[0] = new Message(1, arr2, new UserInfo("mohsen", "mahmoud mohsen"), "subject in sent", "body");
+        arr[1] = new Message(1, arr2, new UserInfo("mohsen", "mahmoud mohsen"), "subject in sent", "body");
         return arr;
     }
 
@@ -50,8 +53,8 @@ public class DummyImplMessageService implements IMessageService {
         UserInfo[] arr2 = new UserInfo[1];
         arr2[0] = new UserInfo("komalo", "mohamed kamal");
 
-        arr[0] = new Message(1L, arr2, new UserInfo("mohsen", "mahmoud mohsen"), "subject in drafts", "body");
-        arr[1] = new Message(1L, arr2, new UserInfo("mohsen", "mahmoud mohsen"), "subject in drafts", "body");
+        arr[0] = new Message(1, arr2, new UserInfo("mohsen", "mahmoud mohsen"), "subject in drafts", "body");
+        arr[1] = new Message(1, arr2, new UserInfo("mohsen", "mahmoud mohsen"), "subject in drafts", "body");
         return arr;
     }
 
@@ -62,8 +65,8 @@ public class DummyImplMessageService implements IMessageService {
         UserInfo[] arr2 = new UserInfo[1];
         arr2[0] = new UserInfo("komalo", "mohamed kamal");
 
-        arr[0] = new Message(1L, arr2, new UserInfo("mohsen", "mahmoud mohsen"), "subject in trash", "body");
-        arr[1] = new Message(1L, arr2, new UserInfo("mohsen", "mahmoud mohsen"), "subject in trash", "body");
+        arr[0] = new Message(1, arr2, new UserInfo("mohsen", "mahmoud mohsen"), "subject in trash", "body");
+        arr[1] = new Message(1, arr2, new UserInfo("mohsen", "mahmoud mohsen"), "subject in trash", "body");
         return arr;
     }
 
