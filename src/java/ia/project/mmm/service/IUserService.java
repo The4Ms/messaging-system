@@ -7,4 +7,5 @@ package ia.project.mmm.service;
 public interface IUserService {
     boolean isValidUser(String username, String password);
     boolean addNewUser(String username, String password, String fullname);
+    void editUser(String username, String newFullname, String newPassword);
 }

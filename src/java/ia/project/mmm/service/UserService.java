@@ -19,7 +19,9 @@ public class UserService implements IUserService{
 
     private static final String CHECK_USER_QUERY = "SELECT count(*) FROM user WHERE username=? AND password=?";
     private static final String CREATE_USER_QUERY = "INSERT INTO user(username, password, fullname) VALUES(?, ?, ?)";
+    private static final String UPDATE_USER_QUERY = "UPDATE user SET fullname=?, password=? WHERE user.username=?";
     
+
     @Override
     public boolean isValidUser(String username, String password) {
         DatabaseHandler db = DatabaseHandlerProvider.getDatabaseHandler();
@@ -51,4 +53,12 @@ public class UserService implements IUserService{
         
         return updated == 1;
     }    
+
+    @Override
+    public void editUser(String username, String newFullname, String newPassword) {
+        DatabaseHandler db = DatabaseHandlerProvider.getDatabaseHandler();
+        int updated = db.excuteParameterizedQuery(UPDATE_USER_QUERY, newFullname, newPassword, username);
+        
+        db.closeConnection();
+    }
 }

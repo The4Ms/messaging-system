@@ -15,7 +15,7 @@
         <h1>Profile</h1>
         <form action="updateProfile" method="POST">
             <div>Fullname <input name="fullname" required/></div>
-            <div>Username<input name="username" required/></div>
+            <div>Username ${username}
             <div>Password<input name="password" type="password" required/></div>
             <button type="submit">update</button>
         </form>

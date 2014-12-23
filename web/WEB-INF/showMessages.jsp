@@ -23,6 +23,7 @@
     <body>
         <h1><%= title %></h1>
         <h1>Welcome <%= username %></h1>
+        <a href="profile.jsp">profile</a>
         <a href="logout">logout</a>
         <a href="compose.jsp">compose</a>
         <a href="index.jsp?view=inbox">inbox</a>
