@@ -35,7 +35,7 @@ public class LoginFilter implements Filter{
         
         String url = req.getServletPath();
         
-        boolean hasSession = (req.getSession(false) != null);
+        boolean hasSession = (req.getSession(false) != null) && req.getSession(false).getAttribute("username") != null;
         
         boolean goingToLogin = false;
         for(String loginUrl : loginUrls){

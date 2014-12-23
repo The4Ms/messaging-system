@@ -6,6 +6,7 @@
 
 package ia.project.mmm.controller;
 
+import ia.project.mmm.service.ServiceLocater;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -23,7 +24,16 @@ public class SignUpController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String fullname = req.getParameter("fullname");
+        String username = req.getParameter("username");
+        String password = req.getParameter("password");
         
+        if(ServiceLocater.getUserService().addNewUser(username, password, fullname)){
+            req.getRequestDispatcher("WEB-INF/OperationSuccess.jsp").forward(req, resp);
+        }else{
+            req.setAttribute("errorMsg", "This username already exists");
+            req.getRequestDispatcher("WEB-INF/OperationFail.jsp").forward(req, resp);
+        }
     }
 
 }

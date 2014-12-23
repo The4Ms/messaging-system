@@ -39,7 +39,14 @@ public class UserService implements IUserService{
     @Override
     public boolean addNewUser(String username, String password, String fullname) {
         DatabaseHandler db = DatabaseHandlerProvider.getDatabaseHandler();
-        int updated = db.excuteParameterizedQuery(CREATE_USER_QUERY, username, password, fullname);
+        int updated = 0;
+        try{
+            updated = db.excuteParameterizedQuery(CREATE_USER_QUERY, username, password, fullname);
+        }
+        catch(Exception ex){
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "error", ex);
+        }
+        
         db.closeConnection();
         
         return updated == 1;

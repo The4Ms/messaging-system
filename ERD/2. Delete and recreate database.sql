@@ -10,7 +10,7 @@ USE `msg` ;
 -- Table `msg`.`User`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `msg`.`User` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `username` VARCHAR(45) NOT NULL,
   `password` VARCHAR(45) NOT NULL,
   `fullname` VARCHAR(45) NOT NULL,
@@ -23,7 +23,7 @@ ENGINE = InnoDB;
 -- Table `msg`.`Message`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `msg`.`Message` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `subject` VARCHAR(45) NULL,
   `body` VARCHAR(300) NULL,
   `sender_User_id` INT NOT NULL,
@@ -41,7 +41,7 @@ ENGINE = InnoDB;
 -- Table `msg`.`Receiver`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `msg`.`Receiver` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `receiver_User_id` INT NOT NULL,
   `Message_id` INT NOT NULL,
   PRIMARY KEY (`id`, `Message_id`, `receiver_User_id`),
