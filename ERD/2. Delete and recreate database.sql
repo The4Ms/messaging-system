@@ -24,9 +24,10 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `msg`.`Message` (
   `id` INT NOT NULL AUTO_INCREMENT,
+  `sender_User_id` INT NOT NULL,
   `subject` VARCHAR(45) NULL,
   `body` VARCHAR(300) NULL,
-  `sender_User_id` INT NOT NULL,
+  `sent_date` DATETIME NULL,
   PRIMARY KEY (`id`, `sender_User_id`),
   INDEX `fk_Message_User1_idx` (`sender_User_id` ASC),
   CONSTRAINT `fk_Message_User1`
