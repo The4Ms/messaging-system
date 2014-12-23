@@ -7,11 +7,18 @@
 package ia.project.mmm.controller;
 
 import ia.project.mmm.model.Message;
+import ia.project.mmm.model.UserInfo;
 import ia.project.mmm.service.ServiceLocater;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -51,11 +58,36 @@ public class IndexController extends HttpServlet {
         }
         
         String filterFrom = req.getParameter("filter.from");
+        String filterTo = req.getParameter("filter.to");
+        String filterSubject = req.getParameter("filter.subject");
+        String filterStartDate = req.getParameter("filter.startDate");
+        String filterEndDate = req.getParameter("filter.endDate");
+        
+        Date startDate = null;
+        Date endDate = null;
+        try {
+            DateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm a");
+            startDate = (filterStartDate == null || filterStartDate.isEmpty()) ? new Date(0L) : format.parse(filterStartDate + " 00:00 AM");
+            endDate = (null == filterEndDate || filterEndDate.isEmpty()) ? new Date(Long.MAX_VALUE) : format.parse(filterEndDate + " 11:59 PM");
+        } catch (Exception ex) {
+            Logger.getLogger(IndexController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         List<Message> messagesFiltered = new ArrayList<>();
+        
         for(Message m : messages){
-            System.out.println(filterFrom + " " + m.getSender().getUsername());
-            if(filterFrom == null || m.getSender().getUsername().contains(filterFrom)){
+            boolean filterToRes = filterTo == null;
+            if(!filterToRes){
+                for(UserInfo rec : m.getReceivers()){
+                    filterToRes |= rec.getUsername().contains(filterTo);
+                }
+            }
+            //System.out.println(m.getSentDate().before(startDate)  + " " +  m.getSentDate().after(endDate) + " " + m.getSentDate().getTime() + " === " + endDate.getTime());
+            
+            if( (filterFrom == null || filterFrom.isEmpty() || m.getSender().getUsername().contains(filterFrom)) &&
+                (filterSubject == null || filterSubject.isEmpty() || m.getSubject().contains(filterSubject)) &&
+                (startDate.getTime() <= m.getSentDate().getTime() &&  m.getSentDate().getTime() <= endDate.getTime() )  ){
+                
                 messagesFiltered.add(m);
             }
         }

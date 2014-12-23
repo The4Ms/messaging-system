@@ -31,8 +31,8 @@ public class DummyImplMessageService implements IMessageService {
         arr2[0] = new UserInfo("komalo", "mohamed kamal");
 
         arr[0] = new Message(1, arr2, new UserInfo("mohsen", "mahmoud mohsen"), "subject in inbox", "body", new Date());
-        arr[1] = new Message(1, arr2, new UserInfo("mohsen", "mahmoud mohsen"), "subject in inbox", "body", new Date());
-        arr[2] = new Message(1, arr2, new UserInfo("mohsen", "mahmoud mohsen"), "subject in inbox", "body", new Date());
+        arr[1] = new Message(1, arr2, new UserInfo("yusuf", "mahmoud mohsen"), "subject in inbox", "body", new Date());
+        arr[2] = new Message(1, arr2, new UserInfo("kamal", "mahmoud mohsen"), "subject in inbox", "body", new Date());
         return arr;
     }
 
