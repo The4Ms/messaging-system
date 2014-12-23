@@ -4,6 +4,7 @@
     Author     : Mohamed Kamal
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="ia.project.mmm.model.Message"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
@@ -28,9 +29,12 @@
         </div>
 
         <p>
-            Receivers:
-            <c:forEach var="receiver" items="${message.receivers}">            
-                    ${receiver.username},
+            From: ${message.sender.username}
+        </p>
+        <p>
+            To:
+            <c:forEach var="receiver" items="${message.receivers}">
+                 ${receiver.username},
             </c:forEach>
         </p>
         <p>
