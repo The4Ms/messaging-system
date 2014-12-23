@@ -10,6 +10,8 @@ import ia.project.mmm.model.Message;
 import ia.project.mmm.service.ServiceLocater;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -48,8 +50,18 @@ public class IndexController extends HttpServlet {
             messages = ServiceLocater.getMessageService().getInboxOf(username);
         }
         
+        String filterFrom = req.getParameter("filter.from");
+        
+        List<Message> messagesFiltered = new ArrayList<>();
+        for(Message m : messages){
+            System.out.println(filterFrom + " " + m.getSender().getUsername());
+            if(filterFrom == null || m.getSender().getUsername().contains(filterFrom)){
+                messagesFiltered.add(m);
+            }
+        }
+        
         req.setAttribute("title", type);
-        req.setAttribute("messages", messages);
+        req.setAttribute("messages", messagesFiltered.toArray(new Message[0]));
         req.getRequestDispatcher("WEB-INF/showMessages.jsp").forward(req, resp);
     }
 }

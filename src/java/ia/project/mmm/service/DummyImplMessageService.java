@@ -25,13 +25,14 @@ public class DummyImplMessageService implements IMessageService {
 
     @Override
     public Message[] getInboxOf(String username) {
-        Message[] arr = new Message[2];
+        Message[] arr = new Message[3];
 
         UserInfo[] arr2 = new UserInfo[1];
         arr2[0] = new UserInfo("komalo", "mohamed kamal");
 
         arr[0] = new Message(1, arr2, new UserInfo("mohsen", "mahmoud mohsen"), "subject in inbox", "body", new Date());
         arr[1] = new Message(1, arr2, new UserInfo("mohsen", "mahmoud mohsen"), "subject in inbox", "body", new Date());
+        arr[2] = new Message(1, arr2, new UserInfo("mohsen", "mahmoud mohsen"), "subject in inbox", "body", new Date());
         return arr;
     }
 
