@@ -31,11 +31,31 @@
         <a href="index.jsp?view=sent">sent</a>
         <a href="index.jsp?view=drafts">drafts</a>
         
+        <br><br>
+        
         <div>
+            <div>
+                <form action="index.jsp" method="GET">
+                    <input hidden name="view" value="${title}" />
+                    filter:<br>
+                    from: <input name="filter.from" value="${param['filter.from']}" /><br>
+                    to: <input name="filter.to" value="${param['filter.to']}" /><br>
+                    subject: <input name="filter.subject" value="${param['filter.subject']}" /><br>
+                    between this date: <input type="date" name="filter.startDate" value="${param['filter.startDate']}" /><br>
+                    and this date: <input type="date" name="filter.endDate" value="${param['filter.endDate']}" /><br>
+                    <button type="submit">filter</button>
+                    
+                    <br><br>
+                </form>
+            </div>
+            
             mails:
             <table>
                 <c:forEach var="komalo" items="${messages}">
                     <tr>
+                        <td>
+                            ${komalo.sender.username}
+                        </td>
                         <td>
                             <c:forEach var="rec" items="${komalo.receivers}">            
                                     ${rec.username},
