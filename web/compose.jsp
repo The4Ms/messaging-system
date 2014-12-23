@@ -1,8 +1,15 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
-<% String username = (String)session.getAttribute("username"); 
-
+<%
+    String to = (String)request.getAttribute("to");
+    if(to == null) to = "";
+    
+    String body = (String)request.getAttribute("body");
+    if(body == null) body = "";
+    
+    String subject = (String)request.getAttribute("subject");
+    if(subject == null) subject = "";
 %>
 
 <html>
@@ -15,9 +22,9 @@
         
         <h1>Compose message</h1>
         <form action="sendMessage" method="POST">
-            <input name="to" required/>
-            <input name="subject" required/>
-            <input name="body" required/>
+            <input name="to" value="${to}" required/><br><br>
+            <input name="subject" value="${subject}" required/><br><br>
+            <textarea name="body" rows="20" required>${body}</textarea><br><br>
             <button type="submit">send</button>
         </form>
             <button type="button">save to drafts</button>

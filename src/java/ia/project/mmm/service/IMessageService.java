@@ -14,6 +14,9 @@ public interface IMessageService {
     Message[] getDraftsOf(String username);
     Message[] getTrashOf(String username);
     
+    void trashMessage(String username, int messageId);
+    void deleteMessageForever(String username, int messageId);
+    
     /***
      * 
      * @param senderUsername

@@ -61,6 +61,19 @@ public class Message {
     public void setSubject(String subject) {
         this.subject = subject;
     }
+
+    public String getReceiversUsernames(){
+        String to = receivers[0].getUsername();
+        for(int i=1; i<receivers.length; i++){
+            to += "," + receivers[i].getUsername();
+        }
+        return to;
+    }
     
-    
+    @Override
+    public String toString() {
+        return "From: " + getSender().getUsername() + "\n" +
+                "To: " + getReceiversUsernames() + "\n" +
+                "Body:\n" + getBody();
+    }
 }

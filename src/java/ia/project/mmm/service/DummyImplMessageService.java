@@ -75,4 +75,14 @@ public class DummyImplMessageService implements IMessageService {
         return new String[0];
     }
 
+    @Override
+    public void trashMessage(String username, int messageId) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void deleteMessageForever(String username, int messageId) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

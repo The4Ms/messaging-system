@@ -21,8 +21,8 @@
         <a href="index.jsp">back to home page</a>
         
         <div>
-            <a href="doMessage?type=delete&id=${message.id}">delete</a>
-            <a href="doMessage?type=archive&id=${message.id}">archive</a>
+            <a href="doMessage?type=archive&id=${message.id}">trash</a>
+            <a href="doMessage?type=delete&id=${message.id}">delete for ever</a>
             <a href="doMessage?type=reply&id=${message.id}">reply</a>
             <a href="doMessage?type=forward&id=${message.id}">forward</a>
         </div>

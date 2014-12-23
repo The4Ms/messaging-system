@@ -7,6 +7,7 @@
 package ia.project.mmm.controller;
 
 import ia.project.mmm.model.Message;
+import ia.project.mmm.model.UserInfo;
 import ia.project.mmm.service.ServiceLocater;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -48,15 +49,22 @@ public class doMessageController extends HttpServlet {
         }
         
         if(type.equals("delete")){
-            
+            ServiceLocater.getMessageService().deleteMessageForever(username, msgId);
         }
-        else if(type.equals("archive")){
-            
+        else if(type.equals("trash")){
+            ServiceLocater.getMessageService().trashMessage(username, msgId);
         }
         else if(type.equals("reply")){
-            
+            req.setAttribute("to", message.getReceiversUsernames());
+            req.setAttribute("subject", "RE:" + message.getSubject());
+            req.setAttribute("body", "\n\n\n\nRE:\n" + message.toString());
+            req.getRequestDispatcher("compose.jsp").forward(req, response);
         }
         else if(type.equals("forward")){
+            req.setAttribute("to", message.getReceiversUsernames());
+            req.setAttribute("subject", "FW:\n" + message.getSubject());
+            req.setAttribute("body", "\n\n\n\nFW:\n" + message.toString());
+            req.getRequestDispatcher("compose.jsp").forward(req, response);
             
         }
     }
