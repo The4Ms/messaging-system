@@ -6,6 +6,7 @@
 
 package ia.project.mmm.service;
 
+import ia.project.mmm.model.UserInfo;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -60,5 +61,26 @@ public class UserService implements IUserService{
         int updated = db.excuteParameterizedQuery(UPDATE_USER_QUERY, newFullname, newPassword, username);
         
         db.closeConnection();
+    }
+
+    @Override
+    public UserInfo getUserById(int userId) {
+        DatabaseHandler databaseHandler = DatabaseHandlerProvider.getDatabaseHandler();
+        String query = "SELECT username, fullname from user where id = ?";
+        ResultSet resultSet = databaseHandler.excuteParameterizedQueryRes(query, userId);
+        
+        String username;
+        String fullname;
+        
+        try{
+            if(!resultSet.next())
+                return null;
+            
+            username = resultSet.getString("username");
+            fullname = resultSet.getString("fullname");
+        }
+        catch(Exception ex){ throw new RuntimeException(ex); }
+        
+        return new UserInfo(username, fullname);
     }
 }
