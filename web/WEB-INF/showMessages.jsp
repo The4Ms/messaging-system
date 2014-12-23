@@ -25,6 +25,7 @@
         <h1>Welcome <%= username %></h1>
         <a href="logout">logout</a>
         <a href="compose.jsp">compose</a>
+        <a href="index.jsp?view=inbox">inbox</a>
         <a href="index.jsp?view=trash">trash</a>
         <a href="index.jsp?view=sent">sent</a>
         <a href="index.jsp?view=drafts">drafts</a>
