@@ -1,5 +1,7 @@
 package ia.project.mmm.model;
 
+import java.util.Date;
+
 /**
  *
  * @author Mohamed Kamal
@@ -10,18 +12,28 @@ public class Message {
     private UserInfo sender;
     private String body;
     private String subject;
+    private Date sentDate;
 
     public Message() {
     }
 
-    public Message(int Id, UserInfo[] receivers, UserInfo sender, String subject, String body) {
+    public Message(int Id, UserInfo[] receivers, UserInfo sender, String subject, String body, Date sentDate) {
         this.Id = Id;
         this.receivers = receivers;
         this.sender = sender;
         this.body = body;
         this.subject = subject;
+        this.sentDate = sentDate;
     }
 
+    public Date getSentDate() {
+        return sentDate;
+    }
+
+    public void setSentDate(Date sentDate) {
+        this.sentDate = sentDate;
+    }
+    
     public int getId() {
         return Id;
     }
@@ -74,6 +86,7 @@ public class Message {
     public String toString() {
         return "From: " + getSender().getUsername() + "\n" +
                 "To: " + getReceiversUsernames() + "\n" +
+                "Date: " + getSentDate() + "\n" +
                 "Body:\n" + getBody();
     }
 }

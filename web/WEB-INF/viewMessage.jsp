@@ -38,6 +38,9 @@
             </c:forEach>
         </p>
         <p>
+            Sent Date: ${message.sentDate}
+        </p>
+        <p>
             Subject: ${message.subject}
         </p>
         
