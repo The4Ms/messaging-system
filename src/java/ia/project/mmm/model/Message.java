@@ -13,6 +13,7 @@ public class Message {
     private String body;
     private String subject;
     private Date sentDate;
+    private boolean unread;
 
     public Message() {
     }
@@ -25,7 +26,15 @@ public class Message {
         this.subject = subject;
         this.sentDate = sentDate;
     }
+    
+    public boolean isUnread() {
+        return unread;
+    }
 
+    public void setUnread(boolean unread) {
+        this.unread = unread;
+    }
+    
     public Date getSentDate() {
         return sentDate;
     }
