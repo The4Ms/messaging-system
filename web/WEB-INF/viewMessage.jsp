@@ -13,19 +13,58 @@
 %>
 
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <a href="index.jsp">back to home page</a>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>BigM</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="bootstrap.min.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <nav class="navbar navbar-inverse">
+      <div class="container">
+        <div class="clear"></div>
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.jsp">BigM</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="index.jsp?view=inbox">Inbox</a></li>
+            <li><a href="index.jsp?view=drafts">Drafts</a></li>
+            <li><a href="index.jsp?view=trash">Trash</a></li>
+            <li><a href="index.jsp?view=sent">Sent</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="profile.jsp">${fullname}</a></li>
+            <li><a href="logout">Logout</a></li>
+          </ul>
+        </div><!-- /.nav-collapse -->
+      </div><!-- /.container -->
+    </nav><!-- /.navbar -->
+
+    <div class="container-fluid">
+      <div class="col-md-4 col-md-offset-4">
+
         
         <div>
-            <a href="doMessage?type=archive&id=${message.id}">trash</a>
-            <a href="doMessage?type=delete&id=${message.id}">delete for ever</a>
-            <a href="doMessage?type=reply&id=${message.id}">reply</a>
-            <a href="doMessage?type=forward&id=${message.id}">forward</a>
+            <a class="btn btn-lg btn-info" href="doMessage?type=archive&id=${message.id}">trash</a>
+            <a class="btn btn-lg btn-info" href="doMessage?type=delete&id=${message.id}">delete for ever</a>
+            <a class="btn btn-lg btn-info" href="doMessage?type=reply&id=${message.id}">reply</a>
+            <a class="btn btn-lg btn-info" href="doMessage?type=forward&id=${message.id}">forward</a>
         </div>
 
         <p>
@@ -48,5 +87,8 @@
             Body:<br>
             <%= message.getBody().replace("\n", "<br>") %>
         </p>
-    </body>
+
+      </div>
+    </div>
+  </body>
 </html>
