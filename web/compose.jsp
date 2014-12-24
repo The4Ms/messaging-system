@@ -63,15 +63,15 @@
         <form action="sendMessage" method="POST">
           <h1 class="page-header">New Message</h1>
           <div class="form-group">
-              <input name="to" type="email1" class="form-control" placeholder="To" value="${to}">
+              <input name="to" type="email1" class="form-control" placeholder="To" value="${to}" required="">
           </div>
 
           <div class="form-group">
-            <input name="subject" type="subject" class="form-control" placeholder="Subject" value="${subject}">
+              <input name="subject" type="subject" class="form-control" placeholder="Subject" value="${subject}" required="">
           </div>
 
           <div class="form-group">
-            <textarea name="body" class="form-control" rows="3" placeholder="Body" >${body}</textarea>
+            <textarea name="body" class="form-control" rows="3" placeholder="Body" required="">${body}</textarea>
           </div>
           <button  class="btn btn-primary pull-right" type="submit">Send Message</button>
           

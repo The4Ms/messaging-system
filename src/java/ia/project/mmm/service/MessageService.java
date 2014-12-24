@@ -274,6 +274,9 @@ public class MessageService implements IMessageService{
             throw new RuntimeException(ex);
         }
         
+        if(receiversIds.size() == 0)
+            return receiversUsernames;
+        
         query = "INSERT into Message (sender_User_id,subject,body,sent_date) "
                 + "values (?,?,?,?)";
         databaseHandler.excuteParameterizedQuery(query, senderUserId, subject, body, dateFormat.format(date));
