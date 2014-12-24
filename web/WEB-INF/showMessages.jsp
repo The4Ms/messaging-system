@@ -82,7 +82,7 @@
                         between: <input type="date" class="form-control input-sm" name="filter.startDate" value="${param['filter.startDate']}" /><br>
                   </div>
                   <div class="form-group">
-                        and <input type="date" class="form-control input-sm" name="filter.endDate" value="${param['filter.startDate']}" /><br>
+                        and <input type="date" class="form-control input-sm" name="filter.endDate" value="${param['filter.endDate']}" /><br>
                   </div>
                   <button type="submit" class="btn btn-info bt-sm">Filter</button>
                 </form>

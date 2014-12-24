@@ -76,15 +76,10 @@ public class IndexController extends HttpServlet {
         List<Message> messagesFiltered = new ArrayList<>();
         
         for(Message m : messages){
-            boolean filterToRes = filterTo == null;
-            if(!filterToRes){
-                for(UserInfo rec : m.getReceivers()){
-                    filterToRes |= rec.getUsername().contains(filterTo);
-                }
-            }
             //System.out.println(m.getSentDate().before(startDate)  + " " +  m.getSentDate().after(endDate) + " " + m.getSentDate().getTime() + " === " + endDate.getTime());
             
             if( (filterFrom == null || filterFrom.isEmpty() || m.getSender().getUsername().contains(filterFrom)) &&
+                (filterTo == null || isInlist(filterTo, m.getReceivers())) &&
                 (filterSubject == null || filterSubject.isEmpty() || m.getSubject().contains(filterSubject)) &&
                 (startDate.getTime() <= m.getSentDate().getTime() &&  m.getSentDate().getTime() <= endDate.getTime() )  ){
                 
@@ -95,5 +90,12 @@ public class IndexController extends HttpServlet {
         req.setAttribute("title", type);
         req.setAttribute("messages", messagesFiltered.toArray(new Message[0]));
         req.getRequestDispatcher("WEB-INF/showMessages.jsp").forward(req, resp);
+    }
+    private boolean isInlist(String username, UserInfo[] users){
+        for(UserInfo rec : users){
+            if(rec.getUsername().contains(username))
+                return true;
+        }
+        return false;
     }
 }
