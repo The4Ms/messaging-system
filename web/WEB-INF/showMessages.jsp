@@ -52,7 +52,7 @@
                         <li><a href="index.jsp?view=sent">Sent</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="profile.jsp">${username}</a></li>
+                        <li><a href="profile.jsp">${fullname}</a></li>
                         <li><a href="logout">Logout</a></li>
                     </ul>
                 </div><!-- /.nav-collapse -->
@@ -100,13 +100,13 @@
                                 <tr>
                                     <td>
                                         <a href="viewMessage?id=${komalo.id}">
-                                        ${komalo.sender.username}
+                                        ${komalo.sender.fullname} (${komalo.sender.username})
                                         </a>
                                     </td>
                                     <td>
                                         <a href="viewMessage?id=${komalo.id}">
                                         <c:forEach var="rec" items="${komalo.receivers}">            
-                                            ${rec.username},
+                                            ${rec.fullname} (${rec.username}),
                                         </c:forEach>
                                         </a>
                                     </td>

@@ -24,7 +24,10 @@ public class UpdateProfile extends HttpServlet {
         String fullname = req.getParameter("fullname");
         String password = req.getParameter("password");
         
+        
         ServiceLocater.getUserService().editUser(username, fullname, password);
+        req.getSession(false).setAttribute("fullname", fullname);
+        
         req.getRequestDispatcher("WEB-INF/OperationSuccess.jsp").forward(req, response);
     }
 }

@@ -11,4 +11,5 @@ public interface IUserService {
     boolean addNewUser(String username, String password, String fullname);
     void editUser(String username, String newFullname, String newPassword);
     UserInfo getUserById(int userId);
+    UserInfo getUserByUsername(String username);
 }

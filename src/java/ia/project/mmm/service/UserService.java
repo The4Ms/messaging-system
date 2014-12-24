@@ -83,4 +83,23 @@ public class UserService implements IUserService{
         
         return new UserInfo(username, fullname);
     }
+    
+    @Override
+    public UserInfo getUserByUsername(String username) {
+        DatabaseHandler databaseHandler = DatabaseHandlerProvider.getDatabaseHandler();
+        String query = "SELECT fullname from user where username = ?";
+        ResultSet resultSet = databaseHandler.excuteParameterizedQueryRes(query, username);
+        
+        String fullname;
+        
+        try{
+            if(!resultSet.next())
+                return null;
+            
+            fullname = resultSet.getString("fullname");
+        }
+        catch(Exception ex){ throw new RuntimeException(ex); }
+        
+        return new UserInfo(username, fullname);
+    }
 }

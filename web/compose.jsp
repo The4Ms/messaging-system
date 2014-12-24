@@ -50,7 +50,7 @@
             <li><a href="index.jsp?view=sent">Sent</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="profile.jsp">${username}</a></li>
+            <li><a href="profile.jsp">${fullname}</a></li>
             <li><a href="logout">Logout</a></li>
           </ul>
         </div><!-- /.nav-collapse -->
