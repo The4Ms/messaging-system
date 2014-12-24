@@ -57,7 +57,7 @@ public class doMessageController extends HttpServlet {
             req.getRequestDispatcher("WEB-INF/OperationSuccess.jsp").forward(req, response);
         }
         else if(type.equals("reply")){
-            req.setAttribute("to", message.getReceiversUsernames());
+            req.setAttribute("to", message.getSender().getUsername());
             req.setAttribute("subject", "RE:" + message.getSubject());
             req.setAttribute("body", "\n\n\n\nRE:\n" + message.toString());
             req.getRequestDispatcher("compose.jsp").forward(req, response);

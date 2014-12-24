@@ -42,7 +42,7 @@ String fullname = (String)session.getAttribute("fullname");
             <li><a href="index.jsp?view=sent">Sent</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="profile.jsp">${fullname}</a></li>
+            <li><a href="profile.jsp">${fullname} (${username})</a></li>
             <li><a href="logout">Logout</a></li>
           </ul>
         </div><!-- /.nav-collapse -->
@@ -56,7 +56,7 @@ String fullname = (String)session.getAttribute("fullname");
           <h1 class="page-header">Profile</h1>
           
           <div class="form-group">
-            <input name="fullname" type="subject" class="form-control" placeholder="${fullname}" required="" >
+            <input name="fullname" type="subject" class="form-control" placeholder="New Fullname"  required="" >
           </div>
           
           <div class="form-group">
