@@ -41,7 +41,8 @@ public class LoginFilter implements Filter{
         for(String loginUrl : loginUrls){
             goingToLogin |= url.equals(loginUrl);
         }
-        
+        if(url.endsWith(".css"))
+            chain.doFilter(request, response);
         if(hasSession && goingToLogin ){
             res.sendRedirect("index.jsp");
         }
