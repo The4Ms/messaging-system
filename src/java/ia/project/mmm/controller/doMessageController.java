@@ -50,9 +50,11 @@ public class doMessageController extends HttpServlet {
         
         if(type.equals("delete")){
             ServiceLocater.getMessageService().deleteMessageForever(username, msgId);
+            req.getRequestDispatcher("WEB-INF/OperationSuccess.jsp").forward(req, response);
         }
         else if(type.equals("trash")){
             ServiceLocater.getMessageService().trashMessage(username, msgId);
+            req.getRequestDispatcher("WEB-INF/OperationSuccess.jsp").forward(req, response);
         }
         else if(type.equals("reply")){
             req.setAttribute("to", message.getReceiversUsernames());
@@ -65,7 +67,6 @@ public class doMessageController extends HttpServlet {
             req.setAttribute("subject", "FW:\n" + message.getSubject());
             req.setAttribute("body", "\n\n\n\nFW:\n" + message.toString());
             req.getRequestDispatcher("compose.jsp").forward(req, response);
-            
         }
     }
 }

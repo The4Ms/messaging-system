@@ -50,7 +50,8 @@ public class viewMessage extends HttpServlet {
         }
         
         Message msg = ServiceLocater.getMessageService().getMessageById(msgId);
-        if(!isUserInMessage(username, msg))
+        
+        if(msg == null || !isUserInMessage(username, msg))
         {
             resp.sendRedirect("index.jsp");
             return;

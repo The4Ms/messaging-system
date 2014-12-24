@@ -61,7 +61,7 @@
 
         
         <div>
-            <a class="btn btn-lg btn-info" href="doMessage?type=archive&id=${message.id}">trash</a>
+            <a class="btn btn-lg btn-info" href="doMessage?type=trash&id=${message.id}">trash</a>
             <a class="btn btn-lg btn-info" href="doMessage?type=delete&id=${message.id}">delete for ever</a>
             <a class="btn btn-lg btn-info" href="doMessage?type=reply&id=${message.id}">reply</a>
             <a class="btn btn-lg btn-info" href="doMessage?type=forward&id=${message.id}">forward</a>
