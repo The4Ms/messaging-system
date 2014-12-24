@@ -33,12 +33,12 @@ public class viewMessage extends HttpServlet {
     }
     private boolean isUserInMessage(String username, Message msg){
         if(msg.getSender().getUsername().equals(username)){
-            return find(ServiceLocater.getMessageService().getSentOf(username), msg);
+            return find(ServiceLocater.getMessageService().getSentOf(username), msg)|| find(ServiceLocater.getMessageService().getTrashOf(username), msg);
         }
         
         for(UserInfo rec : msg.getReceivers()){
             if(rec.getUsername().equals(username)){
-                return find(ServiceLocater.getMessageService().getInboxOf(username), msg);
+                return find(ServiceLocater.getMessageService().getInboxOf(username), msg)|| find(ServiceLocater.getMessageService().getTrashOf(username), msg);
             }
         }
         

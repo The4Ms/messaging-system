@@ -56,11 +56,11 @@ String fullname = (String)session.getAttribute("fullname");
           <h1 class="page-header">Profile</h1>
           
           <div class="form-group">
-            <input name="fullname" type="subject" class="form-control" placeholder="New Fullname"  required="" >
+            <input name="fullname"  class="form-control" placeholder="New Fullname"  required="" >
           </div>
           
           <div class="form-group">
-              <input name="password" type="subject" class="form-control" placeholder="New Password" required="" >
+              <input name="password" type="password" class="form-control" placeholder="New Password" required="" >
           </div>
           
           <button  class="btn btn-primary pull-right" type="submit">Update</button>

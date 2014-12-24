@@ -141,9 +141,9 @@ public class MessageService implements IMessageService{
             resultSet = databaseHandler.excuteParameterizedQueryRes(query, userId, messageId);
             if(resultSet.next()){
                 int receivalId = resultSet.getInt("id");
-                query = "SELECT status from ReceiverMessageStatus where id = ?";
+                query = "SELECT status from ReceiverMessageStatus where Reciever_id = ?";
                 resultSet = databaseHandler.excuteParameterizedQueryRes(query, receivalId);
-                
+                resultSet.next();
                 int status = resultSet.getInt("status");
                 int newStatus = status;
                 if(status == SEEN)
