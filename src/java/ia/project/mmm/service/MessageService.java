@@ -50,7 +50,10 @@ public class MessageService implements IMessageService{
             messageBody = resultSet.getString("body");
             messageSentDate = resultSet.getDate("sent_date");
         }
-        catch(Exception ex){ throw new RuntimeException(ex); }
+        catch(Exception ex){ 
+            databaseHandler.closeConnection();
+            throw new RuntimeException(ex);
+        }
         
         messageSender = userService.getUserById(senderUserId);
         
@@ -63,7 +66,10 @@ public class MessageService implements IMessageService{
                         userService.getUserById(
                                 resultSet.getInt("receiver_User_id")));
         }
-        catch(Exception ex){ throw new RuntimeException(ex); }
+        catch(Exception ex){ 
+            databaseHandler.closeConnection();
+            throw new RuntimeException(ex);
+        }
         
         messageReceivers = new UserInfo[tempMessageReceivers.size()];
         for(int i=0;i<tempMessageReceivers.size();++i)
@@ -117,7 +123,10 @@ public class MessageService implements IMessageService{
                 return;
             userId = resultSet.getInt("id");
         }
-        catch(Exception ex){ throw new RuntimeException(ex); }
+        catch(Exception ex){ 
+            databaseHandler.closeConnection();
+            throw new RuntimeException(ex);
+        }
         
         try{
             query = "SELECT id from Message where sender_User_id = ? and id = ?";
@@ -147,7 +156,11 @@ public class MessageService implements IMessageService{
                 return;
             }
         }
-        catch(Exception ex){ throw new RuntimeException(ex); }
+        catch(Exception ex){ 
+            databaseHandler.closeConnection();
+            throw new RuntimeException(ex);
+        }
+        databaseHandler.closeConnection();
     }
 
     @Override
@@ -163,7 +176,10 @@ public class MessageService implements IMessageService{
                 return;
             userId = resultSet.getInt("id");
         }
-        catch(Exception ex){ throw new RuntimeException(ex); }
+        catch(Exception ex){ 
+            databaseHandler.closeConnection();
+            throw new RuntimeException(ex);
+        }
         
         try{
             query = "SELECT id from Message where sender_User_id = ? and id = ?";
@@ -183,8 +199,12 @@ public class MessageService implements IMessageService{
                 return;
             }
         }
-        catch(Exception ex){ throw new RuntimeException(ex); }
+        catch(Exception ex){ 
+            databaseHandler.closeConnection();
+            throw new RuntimeException(ex);
+        }
         checkMessageForDeletion(messageId);
+        databaseHandler.closeConnection();
     }
     
     @Override
@@ -200,7 +220,10 @@ public class MessageService implements IMessageService{
                 return;
             userId = resultSet.getInt("id");
         }
-        catch(Exception ex){ throw new RuntimeException(ex); }
+        catch(Exception ex){ 
+            databaseHandler.closeConnection();
+            throw new RuntimeException(ex);
+        }
         
         try{
             query = "SELECT id from Receiver where receiver_User_id = ? and Message_id = ?";
@@ -212,8 +235,11 @@ public class MessageService implements IMessageService{
                 return;
             }
         }
-        catch(Exception ex){ throw new RuntimeException(ex); }
-        checkMessageForDeletion(messageId);
+        catch(Exception ex){ 
+            databaseHandler.closeConnection();
+            throw new RuntimeException(ex);
+        }
+        databaseHandler.closeConnection();
     }
 
     @Override
@@ -243,7 +269,10 @@ public class MessageService implements IMessageService{
                 else failedUsernames.add(receiversUsernames[i]);
             }
         }
-        catch(Exception ex){ throw new RuntimeException(ex); }
+        catch(Exception ex){ 
+            databaseHandler.closeConnection();
+            throw new RuntimeException(ex);
+        }
         
         query = "INSERT into Message (sender_User_id,subject,body,sent_date) "
                 + "values (?,?,?,?)";
@@ -255,7 +284,10 @@ public class MessageService implements IMessageService{
             resultSet.next();
             messageId = resultSet.getInt("id");
         }
-        catch(Exception ex){ throw new RuntimeException(ex); }
+        catch(Exception ex){ 
+            databaseHandler.closeConnection();
+            throw new RuntimeException(ex);
+        }
         
         query = "INSERT into SenderMessageStatus (Message_id,status) values (?,?)";
         databaseHandler.excuteParameterizedQuery(query, messageId, SEEN);
@@ -271,7 +303,10 @@ public class MessageService implements IMessageService{
                 resultSet.next();
                 receivalId = resultSet.getInt("id");
             }
-            catch(Exception ex){ throw new RuntimeException(ex); }
+            catch(Exception ex){ 
+                databaseHandler.closeConnection();
+                throw new RuntimeException(ex);
+            }
             
             query = "INSERT into ReceiverMessageStatus (Reciever_id,status) values (?,?)";
             databaseHandler.excuteParameterizedQuery(query, receivalId, NOT_SEEN);
@@ -280,6 +315,7 @@ public class MessageService implements IMessageService{
         String failedUsernamesArray[] = new String[failedUsernames.size()];
         for(int i=0;i<failedUsernames.size();++i)
             failedUsernamesArray[i] = failedUsernames.get(i);
+        databaseHandler.closeConnection();
         return failedUsernamesArray;
     }
     
@@ -299,7 +335,10 @@ public class MessageService implements IMessageService{
             senderUserId = resultSet.getInt("id");
             senderFullName = resultSet.getString("fullname");
         }
-        catch(Exception ex){ throw new RuntimeException(ex); }
+        catch(Exception ex){ 
+            databaseHandler.closeConnection();
+            throw new RuntimeException(ex);
+        }
         
         query = "SELECT * from Message where sender_User_id = ?";
         resultSet = databaseHandler.excuteParameterizedQueryRes(query, senderUserId);
@@ -340,7 +379,10 @@ public class MessageService implements IMessageService{
                                                     messageSubject, messageBody, messageSentDate));
             }
         }
-        catch(Exception ex){ throw new RuntimeException(ex); }
+        catch(Exception ex){ 
+            databaseHandler.closeConnection();
+            throw new RuntimeException(ex);
+        }
         
         sentMessages = new Message[tempSentMessages.size()];
         for(int i=0;i<tempSentMessages.size();++i)
@@ -365,7 +407,10 @@ public class MessageService implements IMessageService{
                 return null;
             receiverUserId = resultSet.getInt("id");
         }
-        catch(Exception ex){ throw new RuntimeException(ex); }
+        catch(Exception ex){ 
+            databaseHandler.closeConnection();
+            throw new RuntimeException(ex);
+        }
         
         query = "SELECT id, Message_id from Receiver where receiver_User_id = ?";
         resultSet = databaseHandler.excuteParameterizedQueryRes(query, receiverUserId);
@@ -390,7 +435,10 @@ public class MessageService implements IMessageService{
                 tempInboxMessages.add(getMessageById(messageId));
             }
         }
-        catch(Exception ex){ throw new RuntimeException(ex); }
+        catch(Exception ex){ 
+            databaseHandler.closeConnection();
+            throw new RuntimeException(ex);
+        }
         
         inboxMessages = new Message[tempInboxMessages.size()];
         for(int i=0;i<tempInboxMessages.size();++i)
@@ -412,7 +460,10 @@ public class MessageService implements IMessageService{
             if(resultSet.getInt("IdCount") != 0)
                 return;
         }
-        catch(Exception ex){ throw new RuntimeException(ex); }
+        catch(Exception ex){ 
+            databaseHandler.closeConnection();
+            throw new RuntimeException(ex);
+        }
         
         query = "SELECT COUNT(Receiver.id) as IdCount "
                 + "from Receiver inner join ReceiverMessageStatus "
@@ -425,7 +476,10 @@ public class MessageService implements IMessageService{
             if(resultSet.getInt("IdCount") != 0)
                 return;
         }
-        catch(Exception ex){ throw new RuntimeException(ex); }
+        catch(Exception ex){ 
+            databaseHandler.closeConnection();
+            throw new RuntimeException(ex);
+        }
         
         query = "SELECT Receiver.id as id "
                 + "from Receiver inner join ReceiverMessageStatus "
@@ -440,7 +494,10 @@ public class MessageService implements IMessageService{
                 databaseHandler.excuteParameterizedQuery(query,receivalId);
             }
         }
-        catch(Exception ex){ throw new RuntimeException(ex); }
+        catch(Exception ex){ 
+            databaseHandler.closeConnection();
+            throw new RuntimeException(ex);
+        }
         
         query = "DELETE from Message where id = ?";
         databaseHandler.excuteParameterizedQuery(query,messageId);
@@ -450,5 +507,6 @@ public class MessageService implements IMessageService{
         
         query = "DELETE from Receiver where Message_id = ?";
         databaseHandler.excuteParameterizedQuery(query,messageId);
+        databaseHandler.closeConnection();
     }
 }
