@@ -40,18 +40,18 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">BigM</a>
+          <a class="navbar-brand" href="index.jsp">BigM</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">Inbox</a></li>
-            <li><a href="#about">Drafts</a></li>
-            <li><a href="#about">Sent</a></li>
+            <li><a href="index.jsp?view=inbox">Inbox</a></li>
+            <li><a href="index.jsp?view=drafts">Drafts</a></li>
+            <li><a href="index.jsp?view=trash">Trash</a></li>
+            <li><a href="index.jsp?view=sent">Sent</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#contact">${username}</a></li>
-            <li><a href="#contact">Logout</a></li>
+            <li><a href="profile.jsp">${username}</a></li>
+            <li><a href="logout">Logout</a></li>
           </ul>
         </div><!-- /.nav-collapse -->
       </div><!-- /.container -->
