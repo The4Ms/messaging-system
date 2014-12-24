@@ -65,7 +65,9 @@ public class MessageService implements IMessageService{
         }
         catch(Exception ex){ throw new RuntimeException(ex); }
         
-        messageReceivers = (UserInfo[]) tempMessageReceivers.toArray();
+        messageReceivers = new UserInfo[tempMessageReceivers.size()];
+        for(int i=0;i<tempMessageReceivers.size();++i)
+            messageReceivers[i] = tempMessageReceivers.get(i);
         
         databaseHandler.closeConnection();
         return new Message(messageId, messageReceivers, messageSender,
@@ -222,7 +224,7 @@ public class MessageService implements IMessageService{
         int senderUserId = 0;
         ArrayList<Integer> receiversIds = new ArrayList<>();
         ArrayList<String> failedUsernames = new ArrayList<>();
-        DateFormat dateFormat = new SimpleDateFormat("YYYY-MM-DD HH:MM:SS");
+        DateFormat dateFormat = new SimpleDateFormat("yyy-MM-dd HH:mm:ss");
         Date date = new Date();
         
         String query = "SELECT id from User where username = ?";
@@ -262,8 +264,8 @@ public class MessageService implements IMessageService{
             query = "INSERT into Receiver (receiver_User_id,Message_id) values (?,?)";
             databaseHandler.excuteParameterizedQuery(query, receiversIds.get(i), messageId);
             
-            query = "SELECT id from Receiver where receiver_User_id = ? and messageId = ?";
-            databaseHandler.excuteParameterizedQuery(query, receiversIds.get(i), messageId);
+            query = "SELECT id from Receiver where receiver_User_id = ? and Message_id = ?";
+            resultSet = databaseHandler.excuteParameterizedQueryRes(query, receiversIds.get(i), messageId);
             int receivalId = 0;
             try{
                 resultSet.next();
@@ -275,7 +277,10 @@ public class MessageService implements IMessageService{
             databaseHandler.excuteParameterizedQuery(query, receivalId, NOT_SEEN);
         }
         
-        return (String[]) failedUsernames.toArray();
+        String failedUsernamesArray[] = new String[failedUsernames.size()];
+        for(int i=0;i<failedUsernames.size();++i)
+            failedUsernamesArray[i] = failedUsernames.get(i);
+        return failedUsernamesArray;
     }
     
     private Message[] getSentOf(String username, int messageStatus){
@@ -327,22 +332,27 @@ public class MessageService implements IMessageService{
                     tempMessageReceivers.add(
                             userService.getUserById(
                                     receiversResultSet.getInt("receiver_User_id")));
-                messageReceivers = (UserInfo[]) tempMessageReceivers.toArray();
+                
+                messageReceivers = new UserInfo[tempMessageReceivers.size()];
+                for(int i=0;i<tempMessageReceivers.size();++i)
+                    messageReceivers[i] = tempMessageReceivers.get(i);
                 tempSentMessages.add(new Message(messageId, messageReceivers, messageSender,
                                                     messageSubject, messageBody, messageSentDate));
             }
         }
         catch(Exception ex){ throw new RuntimeException(ex); }
         
-        sentMessages = (Message[]) tempSentMessages.toArray();
+        sentMessages = new Message[tempSentMessages.size()];
+        for(int i=0;i<tempSentMessages.size();++i)
+            sentMessages[i] = tempSentMessages.get(i);
         databaseHandler.closeConnection();
         return sentMessages;
     }
     
     private Message[] getSentTo(String username, int...messageStatus){
-        ArrayList<Integer> messageStatusList = new ArrayList<>(messageStatus.length);
+        ArrayList<Integer> messageStatusList = new ArrayList<>();
         for(int i=0;i<messageStatus.length;++i)
-            messageStatusList.set(i, messageStatus[i]);
+            messageStatusList.add(messageStatus[i]);
         
         DatabaseHandler databaseHandler = DatabaseHandlerProvider.getDatabaseHandler();
         
@@ -382,7 +392,10 @@ public class MessageService implements IMessageService{
         }
         catch(Exception ex){ throw new RuntimeException(ex); }
         
-        inboxMessages = (Message[]) tempInboxMessages.toArray();
+        inboxMessages = new Message[tempInboxMessages.size()];
+        for(int i=0;i<tempInboxMessages.size();++i)
+            inboxMessages[i] = tempInboxMessages.get(i);
+        
         databaseHandler.closeConnection();
         return inboxMessages;
     }
