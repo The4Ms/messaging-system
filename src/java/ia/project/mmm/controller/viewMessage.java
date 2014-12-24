@@ -7,6 +7,7 @@
 package ia.project.mmm.controller;
 
 import ia.project.mmm.model.Message;
+import ia.project.mmm.model.UserInfo;
 import ia.project.mmm.service.ServiceLocater;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -23,8 +24,22 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "viewMessage", urlPatterns = {"/viewMessage"})
 public class viewMessage extends HttpServlet {
 
+    private boolean isUserInMessage(String username, Message msg){
+        if(msg.getSender().getUsername().equals(username))
+            return true;
+        
+        for(UserInfo rec : msg.getReceivers()){
+            if(rec.getUsername().equals(username))
+                return true;
+        }
+        
+        return false;
+    }
+    
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String username = (String) req.getSession(false).getAttribute("username");
+        
         Integer msgId = null;
         try{
             msgId = Integer.parseInt(req.getParameter("id"));
@@ -35,6 +50,11 @@ public class viewMessage extends HttpServlet {
         }
         
         Message msg = ServiceLocater.getMessageService().getMessageById(msgId);
+        if(!isUserInMessage(username, msg))
+        {
+            resp.sendRedirect("index.jsp");
+            return;
+        }
         
         // should check if the sender can view this message 
         // because someone might try to put an id in the url
