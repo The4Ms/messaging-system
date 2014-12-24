@@ -60,9 +60,10 @@
         </nav><!-- /.navbar -->
 
         <div class="container-fluid">
-            <a class="btn btn-warning btn-lg" href="compose.jsp">New message</a>
             
             <div class="col-md-8 col-md-offset-2">
+            <a class="btn btn-warning btn-md" href="compose.jsp">New message</a>
+            
                 <h1 class="page-header">${title}</h1>
                 
                 <form class="form-inline" action="index.jsp" method="GET">
