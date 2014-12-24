@@ -53,7 +53,7 @@ String fullname = (String)session.getAttribute("fullname");
       <div class="col-md-4 col-md-offset-4">
 
         <form action="updateProfile" method="POST">
-          <h1 class="page-header">New Message</h1>
+          <h1 class="page-header">Profile</h1>
           
           <div class="form-group">
             <input name="fullname" type="subject" class="form-control" placeholder="${fullname}" required="" >
