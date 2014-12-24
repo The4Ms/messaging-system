@@ -45,7 +45,7 @@
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li><a href="index.jsp?view=inbox">Inbox</a></li>
-            <li><a href="index.jsp?view=drafts">Drafts</a></li>
+            <!--<li><a href="index.jsp?view=drafts">Drafts</a></li>-->
             <li><a href="index.jsp?view=trash">Trash</a></li>
             <li><a href="index.jsp?view=sent">Sent</a></li>
           </ul>
@@ -75,7 +75,7 @@
           </div>
           <button  class="btn btn-primary pull-right" type="submit">Send Message</button>
           
-            <button  class="btn btn-info" type="button">Save to drafts</button>
+<!--            <button  class="btn btn-info" type="button">Save to drafts</button>-->
         </form>
 
       </div>

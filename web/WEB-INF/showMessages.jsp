@@ -47,7 +47,7 @@
                 <div id="navbar" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
                         <li><a href="index.jsp?view=inbox">Inbox</a></li>
-                        <li><a href="index.jsp?view=drafts">Drafts</a></li>
+                        <!--<li><a href="index.jsp?view=drafts">Drafts</a></li>-->
                         <li><a href="index.jsp?view=trash">Trash</a></li>
                         <li><a href="index.jsp?view=sent">Sent</a></li>
                     </ul>
