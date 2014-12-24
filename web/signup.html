@@ -1,16 +1,44 @@
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Login</title>
-    </head>
-    <body>
-        <a href="index.jsp">back to home page</a>
-        <h1>Signup</h1>
-        <form action="signup" method="POST">
-            <div>Fullname <input name="fullname" required/></div>
-            <div>Username<input name="username" required/></div>
-            <div>Password<input name="password" type="password" required/></div>
-        <button type="submit">sign up</button>
-        </form>
-    </body>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Signup</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <div class="container">
+      <div class="col-lg-push-5 col-lg-3">
+
+          <h2>Signup to BigM</h2>
+          
+          <form action="signup" method="POST">
+            <div class="form-group">
+              <input name="fullname" class="form-control" placeholder="Fullname">
+            </div>
+              
+            <div class="form-group">
+              <input name="username" type="text" class="form-control" placeholder="Username">
+            </div>
+            
+            <div class="form-group">
+              <input name="password" type="password" class="form-control" placeholder="Password">
+            </div>
+            
+            <button  class="btn btn-primary pull-right" type="submit">Signup</button>
+          </form>
+        
+      </div>
+    </div>
+  </body>
 </html>
