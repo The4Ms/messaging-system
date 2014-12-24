@@ -16,6 +16,7 @@ public interface IMessageService {
     
     void trashMessage(String username, int messageId);
     void deleteMessageForever(String username, int messageId);
+    void markMessageAsSeen(String username, int messageId);
     
     /***
      * 

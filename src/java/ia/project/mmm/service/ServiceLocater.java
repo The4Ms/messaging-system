@@ -9,7 +9,7 @@ import ia.project.mmm.model.UserInfo;
  */
 public class ServiceLocater {
     private static IUserService userService = new UserService();
-    private static IMessageService messageService = new DummyImplMessageService();
+    private static IMessageService messageService = new MessageService();
     
     public static IMessageService getMessageService(){
         return messageService;
