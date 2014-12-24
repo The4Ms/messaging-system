@@ -24,13 +24,22 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "viewMessage", urlPatterns = {"/viewMessage"})
 public class viewMessage extends HttpServlet {
 
+    private boolean find(Message[] msgs, Message m){
+        for(Message ms : msgs){
+            if(ms.getId() == m.getId())
+                return true;
+        }
+        return false;
+    }
     private boolean isUserInMessage(String username, Message msg){
-        if(msg.getSender().getUsername().equals(username))
-            return true;
+        if(msg.getSender().getUsername().equals(username)){
+            return find(ServiceLocater.getMessageService().getSentOf(username), msg);
+        }
         
         for(UserInfo rec : msg.getReceivers()){
-            if(rec.getUsername().equals(username))
-                return true;
+            if(rec.getUsername().equals(username)){
+                return find(ServiceLocater.getMessageService().getInboxOf(username), msg);
+            }
         }
         
         return false;
