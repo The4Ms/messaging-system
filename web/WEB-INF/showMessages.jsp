@@ -62,22 +62,29 @@
         <div class="container-fluid">
             <div class="col-md-8 col-md-offset-2">
                 <h1 class="page-header">${title}</h1>
-
-                <div>
-                    <form action="index.jsp" method="GET">
-                        <input hidden name="view" value="${title}" />
-                        filter:<br>
-                        from: <input name="filter.from" value="${param['filter.from']}" /><br>
-                        to: <input name="filter.to" value="${param['filter.to']}" /><br>
-                        subject: <input name="filter.subject" value="${param['filter.subject']}" /><br>
-                        between this date: <input type="date" name="filter.startDate" value="${param['filter.startDate']}" /><br>
-                        and this date: <input type="date" name="filter.endDate" value="${param['filter.endDate']}" /><br>
-                        <button type="submit">filter</button>
-
-                        <br><br>
-                    </form>
-                </div>
-
+                
+                <form class="form-inline" action="index.jsp" method="GET">
+                  filter mails containing: <input hidden name="view" value="${title}" />
+                  <div class="form-group">
+                    <input width="5" class="form-control input-sm" name="filter.from" value="${param['filter.from']}" placeholder="From">
+                  </div>
+                  <div class="form-group">
+                    <input class="form-control input-sm" name="filter.to" value="${param['filter.to']}" placeholder="To">
+                  </div>
+                  <div class="form-group">
+                    <input class="form-control input-sm" name="filter.subject"value="${param['filter.subject']}" placeholder="Subject">
+                  </div>
+                  <br>
+                  <div class="form-group">
+                        between: <input type="date" class="form-control input-sm" name="filter.startDate" value="${param['filter.startDate']}" /><br>
+                  </div>
+                  <div class="form-group">
+                        and <input type="date" class="form-control input-sm" name="filter.endDate" value="${param['filter.startDate']}" /><br>
+                  </div>
+                  <button type="submit" class="btn btn-info bt-sm">Filter</button>
+                </form>
+                  
+                <br>
                 <div class="table-responsive">
                     <table class="table table-striped">
                         <thead>
@@ -85,6 +92,7 @@
                                 <th>From</th>
                                 <th>To</th>
                                 <th>Subject</th>
+                                <th>Date Sent</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -104,6 +112,11 @@
                                     </td>
                                     <td>
                                         <a href="viewMessage?id=${komalo.id}">${komalo.subject}</a>
+                                    </td>
+                                    <td>
+                                        <a href="viewMessage?id=${komalo.id}">
+                                        ${komalo.sentDate}
+                                        </a>
                                     </td>
                                 </tr>
                             </c:forEach>
